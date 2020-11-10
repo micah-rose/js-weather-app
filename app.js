@@ -21,15 +21,44 @@ window.addEventListener('load', () => {
             .then(data => {
                 console.log(data);
                 const {temp} = data.main;
-                const {main} = data.weather[0];
+                const {main, icon} = data.weather[0];
 
                 temperatureDegree.textContent = temp;
                 temperatureDescr.textContent = main;
                 locationTimezone.textContent = data.name;
+
+                setIcons(icon, document.querySelector('.icon'));
             })
         })
 
     } else {
         h1.textContent = "Please enable us to know your location."
+    }
+
+    function setIcons(icon, iconID){
+        const skycons = new Skycons({color: "white"});
+        let currentIcon;
+
+        if (icon === "01d"){
+            currentIcon = 'CLEAR_DAY'
+        } else if (icon === "01n"){
+            currentIcon = 'CLEAR_NIGHT'
+        } else if (icon === "02d"){
+            currentIcon = 'PARTLY_CLOUDY_DAY'
+        } else if (icon === "02n"){
+            currentIcon = 'PARTLY_CLOUDY_NIGHT'
+        } else if (icon === "03d" || "03n" || "04d" || "04n"){
+            currentIcon = 'CLOUDY'
+        } else if (icon === "09d" || "09n" || "10d" || "10n" || "11d" || "11n"){
+            currentIcon = 'RAIN'
+        } else if (icon === "13d" || "13n"){
+            currentIcon = 'SNOW'
+        } else if (icon === "50d" || "50n"){
+            currentIcon = 'FOG'
+        }
+
+        skycons.play();
+
+        return skycons.set(iconID, Skycons[currentIcon]);
     }
 })
