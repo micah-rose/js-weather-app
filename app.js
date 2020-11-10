@@ -1,8 +1,8 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
-    let temperatureDescr = document.querySelector('.temperaure-description');
-    let temperatureDegree = document.querySelector('.temperaure-degree');
+    let temperatureDescr = document.querySelector('.temperature-description');
+    let temperatureDegree = document.querySelector('.temperature-degree');
     let locationTimezone = document.querySelector('.location-timezone');
 
     if(navigator.geolocation){
@@ -20,8 +20,12 @@ window.addEventListener('load', () => {
             })
             .then(data => {
                 console.log(data);
-                const {temp, name} = data.main;
+                const {temp} = data.main;
                 const {main} = data.weather[0];
+
+                temperatureDegree.textContent = temp;
+                temperatureDescr.textContent = main;
+                locationTimezone.textContent = data.name;
             })
         })
 
