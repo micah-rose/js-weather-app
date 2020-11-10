@@ -6,6 +6,8 @@ window.addEventListener('load', () => {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
+
+            const api = `https://api.darksky.net/forecast/fd9d9c6418c23d94745b836767721ad1/37.8267,-122.4233`;
         })
     } else {
         h1.textContent = "Please enable us to know your location."
