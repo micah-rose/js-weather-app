@@ -33,13 +33,17 @@ window.addEventListener('load', () => {
                 temperatureDescr.textContent = main;
                 locationTimezone.textContent = data.name;
 
+                let celsius = (farenheit - 32) / 1.8
+
                 setIcons(icon, document.querySelector('.icon'));
 
                 degreeSection.addEventListener('click', () => {
                     if (temperatureSpan.textContent === "F") {
                         temperatureSpan.textContent = "C";
+                        temperatureDegree.textContent = celsius.toFixed(1);
                     } else {
                         temperatureSpan.textContent = "F";
+                        temperatureDegree.textContent = farenheit;
                     }
                 })
             })
