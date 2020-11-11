@@ -26,7 +26,10 @@ window.addEventListener('load', () => {
                 const {temp} = data.main;
                 const {main, icon} = data.weather[0];
 
-                temperatureDegree.textContent = temp;
+                let newTemp = (((temp-273.15) * 1.8) + 32)
+                let farenheit = newTemp.toFixed(1);
+
+                temperatureDegree.textContent = farenheit;
                 temperatureDescr.textContent = main;
                 locationTimezone.textContent = data.name;
 
